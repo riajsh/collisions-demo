@@ -59,7 +59,7 @@ export async function signInWithPassword(formData: FormData) {
 
   if (authedUser.email && !isAllowedLoginEmail(authedUser.email)) {
     await supabase.auth.signOut();
-    loginRedirect("Sign in with your work Google account.");
+    loginRedirect("That email isn't authorised to sign in to this workspace.");
   }
 
   try {

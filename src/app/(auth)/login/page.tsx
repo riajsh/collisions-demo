@@ -18,7 +18,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
       error={params.error ? formatLoginError(params.error) : undefined}
       next={params.next}
       primaryDomain={getPrimaryLoginDomain()}
-      showDevLogin={process.env.NODE_ENV === "development"}
+      showDevLogin={true}
       devSeedAccount={getDevSeedAccount()}
     />
   );

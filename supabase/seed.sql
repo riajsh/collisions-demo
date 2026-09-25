@@ -27,8 +27,11 @@ begin;
 -- 11111111-1111-1111-1111-111111111111
 
 -- users (auth + public)
--- ria   22222222-2222-2222-2222-222222222230  admin
--- team  22222222-2222-2222-2222-222222222228  member (placeholder owner)
+-- jordan 22222222-2222-2222-2222-222222222230  admin
+-- priya  22222222-2222-2222-2222-222222222232  admin
+-- sam    22222222-2222-2222-2222-222222222233  admin
+-- taylor 22222222-2222-2222-2222-222222222234  admin
+-- morgan 22222222-2222-2222-2222-222222222235  admin
 
 -- ---------------------------------------------------------------------------
 -- Organisation (tenant boundary — only place the org display name lives)
@@ -88,6 +91,98 @@ values
     '',
     '',
     ''
+  ),
+  (
+    '00000000-0000-0000-0000-000000000000',
+    '22222222-2222-2222-2222-222222222232',
+    'authenticated',
+    'authenticated',
+    'priya@novacollective.io',
+    extensions.crypt('password123', extensions.gen_salt('bf')),
+    now(),
+    now(),
+    now(),
+    jsonb_build_object(
+      'provider', 'email',
+      'providers', jsonb_build_array('email'),
+      'org_id', '11111111-1111-1111-1111-111111111111'
+    ),
+    jsonb_build_object('full_name', 'Priya'),
+    now(),
+    now(),
+    '',
+    '',
+    '',
+    ''
+  ),
+  (
+    '00000000-0000-0000-0000-000000000000',
+    '22222222-2222-2222-2222-222222222233',
+    'authenticated',
+    'authenticated',
+    'sam@novacollective.io',
+    extensions.crypt('password123', extensions.gen_salt('bf')),
+    now(),
+    now(),
+    now(),
+    jsonb_build_object(
+      'provider', 'email',
+      'providers', jsonb_build_array('email'),
+      'org_id', '11111111-1111-1111-1111-111111111111'
+    ),
+    jsonb_build_object('full_name', 'Sam'),
+    now(),
+    now(),
+    '',
+    '',
+    '',
+    ''
+  ),
+  (
+    '00000000-0000-0000-0000-000000000000',
+    '22222222-2222-2222-2222-222222222234',
+    'authenticated',
+    'authenticated',
+    'taylor@novacollective.io',
+    extensions.crypt('password123', extensions.gen_salt('bf')),
+    now(),
+    now(),
+    now(),
+    jsonb_build_object(
+      'provider', 'email',
+      'providers', jsonb_build_array('email'),
+      'org_id', '11111111-1111-1111-1111-111111111111'
+    ),
+    jsonb_build_object('full_name', 'Taylor'),
+    now(),
+    now(),
+    '',
+    '',
+    '',
+    ''
+  ),
+  (
+    '00000000-0000-0000-0000-000000000000',
+    '22222222-2222-2222-2222-222222222235',
+    'authenticated',
+    'authenticated',
+    'morgan@novacollective.io',
+    extensions.crypt('password123', extensions.gen_salt('bf')),
+    now(),
+    now(),
+    now(),
+    jsonb_build_object(
+      'provider', 'email',
+      'providers', jsonb_build_array('email'),
+      'org_id', '11111111-1111-1111-1111-111111111111'
+    ),
+    jsonb_build_object('full_name', 'Morgan'),
+    now(),
+    now(),
+    '',
+    '',
+    '',
+    ''
   );
 
 insert into auth.identities (
@@ -114,6 +209,62 @@ values
     now(),
     now(),
     now()
+  ),
+  (
+    '22222222-2222-2222-2222-222222222232',
+    '22222222-2222-2222-2222-222222222232',
+    jsonb_build_object(
+      'sub', '22222222-2222-2222-2222-222222222232',
+      'email', 'priya@novacollective.io',
+      'email_verified', true
+    ),
+    'email',
+    '22222222-2222-2222-2222-222222222232',
+    now(),
+    now(),
+    now()
+  ),
+  (
+    '22222222-2222-2222-2222-222222222233',
+    '22222222-2222-2222-2222-222222222233',
+    jsonb_build_object(
+      'sub', '22222222-2222-2222-2222-222222222233',
+      'email', 'sam@novacollective.io',
+      'email_verified', true
+    ),
+    'email',
+    '22222222-2222-2222-2222-222222222233',
+    now(),
+    now(),
+    now()
+  ),
+  (
+    '22222222-2222-2222-2222-222222222234',
+    '22222222-2222-2222-2222-222222222234',
+    jsonb_build_object(
+      'sub', '22222222-2222-2222-2222-222222222234',
+      'email', 'taylor@novacollective.io',
+      'email_verified', true
+    ),
+    'email',
+    '22222222-2222-2222-2222-222222222234',
+    now(),
+    now(),
+    now()
+  ),
+  (
+    '22222222-2222-2222-2222-222222222235',
+    '22222222-2222-2222-2222-222222222235',
+    jsonb_build_object(
+      'sub', '22222222-2222-2222-2222-222222222235',
+      'email', 'morgan@novacollective.io',
+      'email_verified', true
+    ),
+    'email',
+    '22222222-2222-2222-2222-222222222235',
+    now(),
+    now(),
+    now()
   );
 
 -- ---------------------------------------------------------------------------
@@ -130,11 +281,32 @@ values
     'admin'
   ),
   (
-    '22222222-2222-2222-2222-222222222228',
+    '22222222-2222-2222-2222-222222222232',
     '11111111-1111-1111-1111-111111111111',
-    'team@novacollective.io',
-    'Team',
-    'member'
+    'priya@novacollective.io',
+    'Priya',
+    'admin'
+  ),
+  (
+    '22222222-2222-2222-2222-222222222233',
+    '11111111-1111-1111-1111-111111111111',
+    'sam@novacollective.io',
+    'Sam',
+    'admin'
+  ),
+  (
+    '22222222-2222-2222-2222-222222222234',
+    '11111111-1111-1111-1111-111111111111',
+    'taylor@novacollective.io',
+    'Taylor',
+    'admin'
+  ),
+  (
+    '22222222-2222-2222-2222-222222222235',
+    '11111111-1111-1111-1111-111111111111',
+    'morgan@novacollective.io',
+    'Morgan',
+    'admin'
   );
 
 -- ---------------------------------------------------------------------------
@@ -1169,12 +1341,12 @@ insert into public.profile_tags (id, org_id, profile_id, tag_id, source) values
   ('d25fed88-5c09-4b72-8c7e-457b9c494151', '11111111-1111-1111-1111-111111111111', 'e98434d1-5faa-4a7b-a8b4-254fc0dc226e', 'c672886d-1db0-486c-8e03-0d8b35fce872', 'ai_inferred');
 
 insert into public.connections (id, org_id, profile_a_id, profile_b_id, connection_type, strength, source) values
-  ('66e60b0b-00f3-453e-927f-88140ab20f24', '11111111-1111-1111-1111-111111111111', 'f813fd00-556b-41c3-a4a1-85f4ddb06ea3', '6ead265d-3854-44ed-9fce-107c378d2dfb', 'introduced', 'strong', 'manual'),
+  ('66e60b0b-00f3-453e-927f-88140ab20f24', '11111111-1111-1111-1111-111111111111', '6ead265d-3854-44ed-9fce-107c378d2dfb', 'f813fd00-556b-41c3-a4a1-85f4ddb06ea3', 'introduced', 'strong', 'manual'),
   ('ddf0c3e3-b9ec-40a2-b47c-a5263b836fb2', '11111111-1111-1111-1111-111111111111', '35795bd0-f95b-4c43-88a0-5fc8d162e019', 'a8a1dda8-2174-4964-afd0-3676089897fc', 'introduced', 'strong', 'manual'),
   ('7a7e9eef-9347-4125-a30a-3d6c9405340c', '11111111-1111-1111-1111-111111111111', '09f12067-6808-410f-825a-64c665502981', 'a6ed5584-6869-4e59-8261-574a1f4268c5', 'colleague', 'warm', 'manual'),
   ('8d0e8ee6-36ab-4535-973f-ddf9183557e9', '11111111-1111-1111-1111-111111111111', '1a875a89-0906-45b8-9136-097caee9d460', 'a23ce0c0-14c6-4915-8842-fecda70c7680', 'colleague', 'warm', 'manual'),
   ('67d52ae3-18ce-4758-84a1-9f8a9e0fa774', '11111111-1111-1111-1111-111111111111', '81895445-e16e-48c9-8857-d6babe8df43f', 'fd3c3b85-88f0-4578-9cfc-036abac41136', 'met_at_event', 'warm', 'manual'),
   ('8effb481-14ad-40b7-a063-9b30a0abed78', '11111111-1111-1111-1111-111111111111', '413267ee-fca7-45e0-8f38-641f0ae124c0', '8de866b4-540d-4cac-b348-e46c81623214', 'introduced', 'strong', 'manual'),
-  ('c2019a9c-a416-49c1-a698-512df8d54fc2', '11111111-1111-1111-1111-111111111111', '9e9419a4-1913-4434-80a2-cd2abc578b82', '1b0e7eb5-af69-441b-b216-e83b1fa31be6', 'colleague', 'weak', 'manual');
+  ('c2019a9c-a416-49c1-a698-512df8d54fc2', '11111111-1111-1111-1111-111111111111', '1b0e7eb5-af69-441b-b216-e83b1fa31be6', '9e9419a4-1913-4434-80a2-cd2abc578b82', 'colleague', 'weak', 'manual');
 
 commit;

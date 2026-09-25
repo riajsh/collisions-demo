@@ -1,0 +1,209 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  /* Ecosystem primitives */
+  --color-blue-50: oklch(97% 0.02 250);
+  --color-blue-100: oklch(93% 0.05 250);
+  --color-blue-600: oklch(46% 0.18 250);
+  --color-blue-700: oklch(38% 0.15 250);
+  --color-neutral-50: oklch(98% 0.005 250);
+  --color-neutral-100: oklch(95% 0.008 250);
+  --color-neutral-200: oklch(90% 0.01 250);
+  --color-neutral-300: oklch(82% 0.012 250);
+  --color-neutral-400: oklch(70% 0.012 250);
+  --color-neutral-600: oklch(44% 0.01 250);
+  --color-neutral-900: oklch(13% 0.004 250);
+  --color-amber-500: oklch(68% 0.19 72);
+
+  /* Ecosystem semantic */
+  --color-surface-primary: var(--color-neutral-50);
+  --color-surface-secondary: var(--color-neutral-100);
+  --color-surface-raised: white;
+  --color-text-primary: var(--color-neutral-900);
+  --color-text-secondary: var(--color-neutral-600);
+  --color-text-muted: var(--color-neutral-400);
+  --color-border-default: var(--color-neutral-200);
+  /* Brand pass: was blue, now a signal green as the primary brand colour. */
+  --color-interactive-primary: oklch(0.595 0.157 151.8);
+  --color-interactive-hover: oklch(0.48 0.15 151.8);
+  --color-interactive-subtle: oklch(0.95 0.03 151.8);
+
+  /* Brand accent colours — for status/tag pills and data visualisation
+     only, never body text or primary actions (that's the signal
+     green, above). Each has a light "subtle" tint for pill backgrounds,
+     paired with the full-strength colour for pill text. */
+  --color-accent-violet: oklch(0.644 0.199 304.3);
+  --color-accent-violet-subtle: oklch(0.93 0.04 304.3);
+  --color-chelsea-sugar: oklch(0.688 0.249 348);
+  --color-chelsea-sugar-subtle: oklch(0.93 0.05 348);
+  --color-powerade: oklch(0.723 0.112 201.7);
+  --color-powerade-subtle: oklch(0.93 0.035 201.7);
+
+  /* Owner palette — add tokens here when extending team-members.json */
+  --color-owner-jordan: oklch(62% 0.18 330);
+  --color-owner-priya: oklch(62% 0.18 10);
+  --color-owner-sam: oklch(62% 0.18 35);
+  --color-owner-taylor: oklch(62% 0.18 175);
+  --color-owner-morgan: oklch(62% 0.18 290);
+  --color-owner-default: var(--color-neutral-400);
+
+  /* Relationship strength */
+  --color-strength-inner-circle: oklch(62% 0.18 250);
+  --color-strength-strong: oklch(62% 0.16 200);
+  --color-strength-warm: oklch(62% 0.14 145);
+  --color-strength-weak: oklch(62% 0.08 145);
+  --color-strength-unknown: var(--color-neutral-300);
+  --color-recency-active: var(--color-strength-strong);
+  --color-recency-reconnect: var(--color-amber-500);
+  --color-recency-dormant: var(--color-neutral-400);
+
+  /* Data state */
+  --color-data-confirmed: var(--color-text-primary);
+  --color-data-inferred: var(--color-text-secondary);
+  --color-data-pending: var(--color-amber-500);
+
+  /* Typography scale */
+  --text-display: 1.5rem;
+  --text-heading: 1.125rem;
+  --text-subheading: 1rem;
+  --text-body: 0.9375rem;
+  --text-caption: 0.8125rem;
+  --text-label: 0.75rem;
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  /* Brand pass — a warm neutral palette (cream, charcoal, signal green,
+     warm grey, milk) converted into this project's oklch-based theme.
+     Dark mode intentionally left on the old greyscale values below
+     (.dark) — not in use / not needed yet. */
+  /* Page background is the deeper cream tone; cards/popovers use the
+     lighter warm white so they lift gently off the page instead of
+     jumping straight to stark white. Pure white is intentionally not
+     used anywhere in this base palette — reserve it, per-component,
+     for the rare thing that genuinely needs to pop (a key stat, a
+     primary callout), not as a default surface. */
+  --background: oklch(0.898 0.021 79.1);
+  --foreground: oklch(0.314 0.006 78.2);
+  --card: oklch(0.941 0.023 78.2);
+  --card-foreground: oklch(0.314 0.006 78.2);
+  --popover: oklch(0.941 0.023 78.2);
+  --popover-foreground: oklch(0.314 0.006 78.2);
+  --primary: oklch(0.595 0.157 151.8);
+  --primary-foreground: oklch(0 0 0);
+  --secondary: oklch(0.941 0.023 78.2);
+  --secondary-foreground: oklch(0.314 0.006 78.2);
+  --muted: oklch(0.941 0.023 78.2);
+  --muted-foreground: oklch(0.668 0.016 84.6);
+  --accent: oklch(0.94 0.03 151.8);
+  --accent-foreground: oklch(0.314 0.006 78.2);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.825 0.019 83.1);
+  --input: oklch(0.825 0.019 83.1);
+  --ring: oklch(0.595 0.157 151.8);
+  --chart-1: oklch(0.595 0.157 151.8);
+  --chart-2: oklch(0.723 0.112 201.7);
+  --chart-3: oklch(0.644 0.199 304.3);
+  --chart-4: oklch(0.688 0.249 348);
+  --chart-5: oklch(0.9 0.174 96.9);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.898 0.021 79.1);
+  --sidebar-foreground: oklch(0.314 0.006 78.2);
+  --sidebar-primary: oklch(0.595 0.157 151.8);
+  --sidebar-primary-foreground: oklch(0 0 0);
+  --sidebar-accent: oklch(0.94 0.03 151.8);
+  --sidebar-accent-foreground: oklch(0.314 0.006 78.2);
+  --sidebar-border: oklch(0.825 0.019 83.1);
+  --sidebar-ring: oklch(0.595 0.157 151.8);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}

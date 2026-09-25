@@ -1,0 +1,20 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/calendar-sync",
+      "schedule": "0 * * * *"
+    },
+    {
+      "path": "/api/cron/eventbrite-sync",
+      "schedule": "*/30 * * * *"
+    },
+    {
+      "path": "/api/cron/eventbrite-sync?tier=all",
+      "schedule": "0 3 * * *"
+    },
+    {
+      "path": "/api/cron/profile-attribute-enrichment",
+      "schedule": "0 4 * * *"
+    }
+  ]
+}
